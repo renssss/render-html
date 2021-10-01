@@ -34,7 +34,7 @@ function App() {
 
 class LinkFilter extends Filter {
   attribute(name: string, value: string): string {
-    let str = value.substring(0, 6);
+    let str = value.substring(0, 7);
     if (name === "href" && str !== "mailto:") {
       return encodeURIComponent(value);
     }
