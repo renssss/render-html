@@ -7,16 +7,16 @@ import {Filter} from "interweave";
 function App() {
     const [text, setText] = useState("");
     const debouncedText = useDebounce<string>(text, 500);
-    const inputText = (
-        <textarea value={text}
+    const inputText = (<textarea value={text}
                   onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value)}
                   cols={220}
                   rows={20}>
-        </textarea>
-    );
+        </textarea>);
     //const outputText = <p>{text}</p>;
     return (
         <div className="App">
+            <h1 className="title">Render HTML</h1>
+            <h2>Put your HTML below...</h2>
             {inputText}
             <br/>
             <Interweave filters={[new LinkFilter()]} content={debouncedText}/>
@@ -26,7 +26,7 @@ function App() {
 
 class LinkFilter extends Filter {
     attribute(name: string, value: string): string {
-        let str: string = value.substring(0, 7);
+        const str: string = value.substring(0, 7);
         if (name === "href" && str !== "mailto:") {
             return encodeURIComponent(value);
         }
